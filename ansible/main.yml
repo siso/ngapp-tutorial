@@ -1,0 +1,8 @@
+---
+- name: siso - Debian vmRax.io Security/Automation Workshop
+  hosts: servers
+  roles:
+    - base
+    - angulajs
+    # - webserver
+    # - selenium-grid

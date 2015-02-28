@@ -1,0 +1,30 @@
+---
+- name: Install Angular.js "angular-phonecat"
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 600
+  with_items:
+    - npm
+    - nodejs
+
+# fix:
+- file: src=/usr/bin/nodejs dest=/usr/bin/node owner=vagrant group=vagrant state=link
+
+# see: https://docs.angularjs.org/tutorial/
+
+- name: install Angular.js "angular-phonecat"
+  git: repo=https://github.com/angular/angular-phonecat.git dest=/home/vagrant/angular-phonecat depth=1
+
+- name: install packages based on package.json
+  npm: path=/home/vagrant/angular-phonecat
+
+# Uncomment the following lines to start Angular.js app
+# Beware that Ansible will not terminate until Angular.js is running
+# - name: start Angular.js "angular-phonecat"
+#   shell: npm start
+#   args:
+#     chdir: /home/vagrant/angular-phonecat
+#   sudo: yes
+#   sudo_user: vagrant

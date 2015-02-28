@@ -1,0 +1,15 @@
+---
+- name: Install pip python package
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 600
+  with_items:
+    - git
+    - mc
+    - python-dev
+    - python-pip
+    - screen
+# - name: Install dsgrid
+#   pip: name=dsgrid
